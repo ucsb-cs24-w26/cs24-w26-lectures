@@ -50,12 +50,12 @@ public:
     // Copy constructor - MUST make deep copy
     // Called when: CustomVector v2 = v1;
     // TODO: Instructor will implement this LIVE!
-    // CustomVector(const CustomVector& other);
+    CustomVector(const CustomVector& other);
 
     // Copy assignment operator - MUST make deep copy
     // Called when: v2 = v1; (where v2 already exists)
     // TODO: Instructor will implement this LIVE!
-    //CustomVector& operator=(const CustomVector& other);
+    CustomVector& operator=(const CustomVector& other);
 
 private:
     int* data;          // Dynamic array

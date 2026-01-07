@@ -24,7 +24,7 @@ void demoOperatorOverloading() {
     // Create complex numbers
     Complex c1(3, 4);   // 3 + 4j
     Complex c2(1, 2);   // 1 + 2j
-    
+    cout << c1;
     cout << "c1 = " << c1 << endl;
     cout << "c2 = " << c2 << endl;
     cout << endl;
@@ -68,7 +68,7 @@ void demonstrateShallowCopyProblem() {
     cout << endl;
 
     cout << "Creating v2 as a copy of v1: CustomVector v2 = v1;" << endl;
-    CustomVector v2 = v1;  // Copy constructor called!
+    CustomVector v2 = v1;  // Copy constructor called! Complex v2(v1)
 
     cout << "v2 = ";
     v2.print();
@@ -122,7 +122,8 @@ void demonstrateCopyAssignment() {
     cout << endl;
 
     cout << "Executing: v2 = v1;" << endl;
-    v2 = v1;  // Copy assignment operator called!
+    v2 = v1;  // Copy assignment operator called!  operator=(v1, v1)
+              // v2.operator=(v1);
 
     cout << "After assignment:" << endl;
     cout << "v1 = ";
@@ -164,7 +165,7 @@ void demonstrateSelfAssignment() {
     cout << endl;
 
     cout << "Executing: v1 = v1; (self-assignment)" << endl;
-   // v1 = v1;  // Self-assignment!
+    v1 = v1;  // Self-assignment!
 
     cout << "v1 = ";
     v1.print();

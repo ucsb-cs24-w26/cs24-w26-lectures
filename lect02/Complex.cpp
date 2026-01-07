@@ -28,9 +28,9 @@ double Complex::getImag() const {
 ostream& operator<<(ostream& out, const Complex& c) {
     // INSTRUCTOR WILL LIVE-CODE THIS!
     // Expected implementation:
-
+    out << c.getReal() <<" + " << c.getImag() << "j" << endl;
     // Placeholder for now:
-    out << "TODO: Implement me!";
+    //out << "TODO: Implement me!";
     return out;
 }
 
@@ -40,17 +40,17 @@ ostream& operator<<(ostream& out, const Complex& c) {
 // Key points:
 // 1. Return type is Complex (NOT Complex&) - why?
 // 2. We're creating a NEW complex number
-// 3. Returns by value (not reference to local variable!)
-Complex operator+(const Complex& lhs, const Complex& rhs) {
-    // YOUR CODE HERE (Students Activity 1B):
-    // 1. Add the real parts
-    // 2. Add the imaginary parts
-    // 3. Return a NEW Complex with those values
-
-
-    // Placeholder:
-    return Complex(0, 0);
-}
+// // 3. Returns by value (not reference to local variable!)
+// Complex operator+(const Complex& lhs, const Complex& rhs) {
+//     // YOUR CODE HERE (Students Activity 1B):
+//     // 1. Add the real parts
+//     // 2. Add the imaginary parts
+//     // 3. Return a NEW Complex with those values
+   
+//     // Placeholder:
+//     return Complex(lhs.getReal() + rhs.getReal(), 
+//                    lhs.getImag() + rhs.getImag());
+// }
 
 // OPTIONAL: operator== for comparison
 // Two complex numbers are equal if both real and imag parts match
