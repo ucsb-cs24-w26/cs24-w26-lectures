@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <chrono>    // For getting precise timing data
 #include <iomanip>
+#include <vector>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ double Fib(int n) {
 
 double FibIterative(int n) {
     if (n < 2) return 1;
-    double arr[n + 1];  // Adjusted size to n+1 to avoid out-of-bounds access
+    vector<double> arr(n + 1);
     arr[0] = arr[1] = 1;
     for (int i = 2; i <= n; i++) {
         arr[i] = arr[i - 1] + arr[i - 2];
