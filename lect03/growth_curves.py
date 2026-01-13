@@ -17,9 +17,9 @@ def generate_growth_curves(labeled=True, output_file=None):
     log_n = np.log2(n)
     sqrt_n = np.sqrt(n)
     linear = n
-    n_log_n = n * np.log2(n) / 10  # scaled to fit
-    quadratic = (n ** 2) / 100     # scaled to fit
-    exponential = 2 ** (n / 8)     # scaled to shoot off graph dramatically
+    n_log_n = n * np.log2(n) / 4
+    quadratic = (n ** 2) / 100   
+    exponential = 2 ** (n / 8)    
 
     fig, ax = plt.subplots(figsize=(10, 8))
 
@@ -42,9 +42,9 @@ def generate_growth_curves(labeled=True, output_file=None):
     if labeled:
         ax.set_title('Orders of Growth', fontsize=22)
         # Add function labels
-        ax.text(97, linear[-1], 'n', fontsize=16, fontweight='bold',
+        ax.text(97, linear[-2], 'n', fontsize=16, fontweight='bold',
                 color='green', va='center')
-        ax.text(97, n_log_n[-1], 'n log n', fontsize=16, fontweight='bold',
+        ax.text(60,  80, 'n log n', fontsize=16, fontweight='bold',
                 color='orange', va='center')
         ax.text(82, 72, 'n²', fontsize=16, fontweight='bold',
                 color='red', va='center')
@@ -59,9 +59,9 @@ def generate_growth_curves(labeled=True, output_file=None):
     else:
         ax.set_title('', fontsize=22)  # No title - instructor provides context
         # Add letter labels instead
-        ax.text(97, linear[-1], 'A', fontsize=18, fontweight='bold',
+        ax.text(97, linear[-2], 'A', fontsize=18, fontweight='bold',
                 color='green', va='center')
-        ax.text(97, n_log_n[-1], 'B', fontsize=18, fontweight='bold',
+        ax.text(60, 80, 'B', fontsize=18, fontweight='bold',
                 color='orange', va='center')
         ax.text(82, 72, 'C', fontsize=18, fontweight='bold',
                 color='red', va='center')
@@ -92,5 +92,5 @@ if __name__ == "__main__":
     generate_growth_curves(labeled=True, output_file='growth_curves_labeled.png')
 
     print("\nGenerated files:")
-    print("  - growth_curves_unlabeled.png  (Slide 8: student discussion)")
-    print("  - growth_curves_labeled.png    (Slide 9: reveal + activity)")
+    print("  - growth_curves_unlabeled.png ")
+    print("  - growth_curves_labeled.png  ")
