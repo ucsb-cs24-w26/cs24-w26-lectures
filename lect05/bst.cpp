@@ -54,14 +54,45 @@ vector<int> bst::linearize() const{
 
 void bst::insert(int key){
     //TO DO
+    if(!root){
+     // Insert the key as the root
+     root  = new Node(key, nullptr);
+     return;
+   }
+   insert(key, root);
 }
 
 void bst::insert(int key, Node *r) {
-   // TO DO
+   // TO DO: non-empty trees
+   //  Base case: If leaf node (no left and right children), insert either left or right 
+   if(key == r->data){
+    return;
+   }
+   if(key < r->data){
+    //insert into the left subtree
+    if(!r->left){ // No left child
+        r->left = new Node(key, r);
+        // insert key as the left child
+    }else{
+        insert(key, r->left);
+    }
+   }else{
+    //insert into the right subtree
+    if(!r->right){
+        //insert key as the right child
+         r->right = new Node(key, r);
+    }else{
+        insert(key, r->right);
+    }
+   }
 }
 
 // Helper recursive function
 void bst::printInorder(Node *r) const{
+    if(!r) return;
+    printInorder(r->left);
+    cout << r->data << " ";
+    printInorder(r->right);
 }
 
 // Helper getHeight recursive
@@ -101,6 +132,7 @@ int main(){
     b.insert(32);
     b.insert(42);
     b.insert(12);
+    cout << "print the tree in order: ";
     b.printInorder();
     cout << endl;
     cout << "Height = "<< b.getHeight() << endl;
