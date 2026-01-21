@@ -92,8 +92,8 @@ void print_stats(const string& label, const vector<uint64_t>& times) {
 // We test three search methods (linear search, binary search, set search) for different input sizes
 // The results will help us compare their performance for the three-sum problem
 int main() {
-    // Define the input sizes to test (1000, 10000, ..., 10000000)
-    vector<int> sizes = {1000, 10000, 100000, 1000000};//, 10000000};
+    // Define the input sizes to test (1000, 10000, ..., 1000000)
+    vector<int> sizes = {1000, 10000, 100000, 1000000};
     int trials = 500;  // Number of trials to run for each size to average out noise 
 
     // Loop over each input size
