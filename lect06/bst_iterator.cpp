@@ -15,11 +15,13 @@ public:
     void printInorder() const;
     int getHeight() const; // returns the height of the tree
     vector<int> linearize() const; // NEW!
-
+    class iterator;
     // mutators or setter
     void insert(int key);
     void clear();
     void erase(int key);
+    iterator begin();
+    iterator end();
 
 private:
     struct Node{
@@ -39,6 +41,43 @@ private:
     Node* successor(Node* r) const;
     Node* getmin(Node* r) const;
 };
+
+class bst::iterator{
+    public:
+        iterator(bst::Node* pcurr = nullptr,  bst* ptree = nullptr): curr(pcurr), rtree(ptree){}
+
+        int operator*(){
+            return curr->data;
+        }
+        //preincrement ++it;
+        iterator& operator++(){
+            curr = rtree->successor(curr);   
+            return *this;       
+        }
+
+        // Write the == and the != operators
+
+    private:
+        bst::Node* curr;
+        bst* rtree;
+
+};
+
+bst::iterator bst::begin(){
+    return iterator(getmin(root), this);
+}
+bst::iterator bst::end(){
+    return iterator(nullptr, this);
+}
+
+bst::Node* bst::getmin(Node* r) const{
+    if(!r) return nullptr;
+    while(r->left){
+        r = r->left;
+    }
+    return r;
+
+}
 
 void bst::linearize(Node *r, vector<int>& result) const{
     if(!r) return;
@@ -155,5 +194,11 @@ int main(){
     b.printInorder();
     cout << endl;
     cout << "Height = "<< b.getHeight() << endl;
+
+    bst::iterator it = b.begin();
+    cout << *it << " ";
+    ++it;
+    cout << *it << " ";
+
     return 0;
 }
