@@ -40,8 +40,6 @@ private:
     Node* getmin(Node* r) const;
 };
 
-
-
 void bst::linearize(Node *r, vector<int>& result) const{
     if(!r) return;
     //cout << r->data << " ";
