@@ -12,7 +12,6 @@ class Solution {
                 for(int j = i + 1; j < temperatures.size(); j++){
                     if(temperatures[j] > temperatures[i]){
                         result[i] = j - i;
-                        break;
                     }
                 }
             } 
