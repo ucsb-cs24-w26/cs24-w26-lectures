@@ -60,7 +60,7 @@ pair<string, int> mostFrequent(const unordered_map<string, int>& counts) {
 }
 
 // ============================================================
-// Part D: Find the top K most frequent visitors
+// Part D (Challenge): Find the top K most frequent visitors
 // Use: priority_queue (min-heap of size k)
 // Expected output for k=3:
 //   192.168.1.1: 6
@@ -73,7 +73,7 @@ vector<pair<string, int>> topKVisitors(const unordered_map<string, int>& counts,
 }
 
 // ============================================================
-// Part E (Challenge): Flag suspicious IPs
+// Part E: Flag suspicious IPs
 // Return IPs that visited more than `threshold` times
 // ============================================================
 vector<string> flagSuspicious(const unordered_map<string, int>& counts, int threshold) {
