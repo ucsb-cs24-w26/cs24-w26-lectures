@@ -19,7 +19,9 @@ vector<string> traffic_log = {
     "192.168.1.1", "172.16.0.1", "192.168.1.1", "8.8.8.8",
     "192.168.1.1", "10.0.0.5", "203.0.113.42"
 };
-
+// Data structures for fast insertion and fast search: BST: std::set 
+// insert: O(log n), search : O(log n)
+// hashtable: unordered_set: insertions O(1) --- average , search -- O(1) --average
 // ============================================================
 // Part A: How many unique visitors?
 // Use: unordered_set
@@ -27,8 +29,13 @@ vector<string> traffic_log = {
 // ============================================================
 int uniqueVisitors(const vector<string>& log) {
     // TODO: Your code here
+    unordered_set<string> unique_ips; // hashtable
 
-    return 0;
+    for(auto ip : log){
+        unique_ips.insert(ip); // O(1) average!!!
+    }
+
+    return unique_ips.size();
 }
 
 // ============================================================
@@ -43,8 +50,14 @@ int uniqueVisitors(const vector<string>& log) {
 // ============================================================
 unordered_map<string, int> countVisits(const vector<string>& log) {
     // TODO: Your code here
+    unordered_map<string, int> ipcounts;
+    // ipcounts["1.0.0.1"] = 1;
+    for( auto ip : log){
+        ipcounts[ip]++; // if an ip does not exist, insert the ip (key) with count 0 (value)
+        // O(1)    : average
+        }
 
-    return {};
+    return ipcounts;
 }
 
 // ============================================================
@@ -68,6 +81,7 @@ pair<string, int> mostFrequent(const unordered_map<string, int>& counts) {
 //   172.16.0.1: 2  (or 8.8.8.8: 2, tie)
 // ============================================================
 vector<pair<string, int>> topKVisitors(const unordered_map<string, int>& counts, int k) {
+
 
     return {};
 }
