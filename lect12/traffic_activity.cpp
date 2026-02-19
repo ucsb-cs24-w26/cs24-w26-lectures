@@ -80,11 +80,68 @@ pair<string, int> mostFrequent(const unordered_map<string, int>& counts) {
 //   10.0.0.5: 4
 //   172.16.0.1: 2  (or 8.8.8.8: 2, tie)
 // ============================================================
+vector<pair<string, int>> topKVisitors_v1(const unordered_map<string, int>& counts, int k) {
+
+    // Priority Queues - self sorting data structure (partially sorted order)
+    // max - heap, max element is on the top
+    // Approach 1: Insert all n elements from the hashtable into a PQ (max-heap), pop k times
+    priority_queue<pair<int, string>> max_heap;
+    // standard comparison in a PQ of pair objects is based on compaing pair.first
+    for (auto [ip, count] : counts){
+        max_heap.push({count, ip});  // O(log n)
+    }
+    // Total : O(n log n)
+
+    vector<pair<string, int>> top_k;
+    // pop k times into the top_k vector
+    while(!max_heap.empty() && k > 0){
+        auto [count, ip] = max_heap.top(); // O(1)
+        // int count = max_heap.top().first;
+        // string ip  = max_heap.top().second;
+
+        top_k.push_back({ip, count}); // O(1)
+        max_heap.pop(); // O(log n)
+        k--;
+    }
+    // Total for while loop : O(k log n)
+    // Total overall :  O(n logn + k logn ) = O(n log n)
+    return top_k;
+}
+
+// I want to write own way of comparing elements and tell the priority queue --- use my appraoch 
+// Functor! Struct that acts like a function
+
+struct CompareCountLess{
+    // overload the function operator 
+    bool operator()( pair<string, int> a , pair<string, int> b ){
+        return a.second < b.second;
+    }
+
+};
+// Usage: CompareCount cmp;
+// cmp(a, b); return true, then the PQ infers that a has lower priority than b.
+
 vector<pair<string, int>> topKVisitors(const unordered_map<string, int>& counts, int k) {
 
+    // Priority Queues - self sorting data structure (partially sorted order)
+    // max - heap, max element is on the top
+    // Approach 2: Batch insert all n elements from the hashtable into a PQ (max-heap)-- using heapify, pop k times
+    priority_queue<pair<string, int>, vector<pair<string, int>>, CompareCountLess> max_heap(counts.begin(), counts.end());
+    // Build a heap using heapify --- O(n) 
+    vector<pair<string, int>> top_k;
+    // pop k times into the top_k vector
+    while(!max_heap.empty() && k > 0){
+        top_k.push_back(max_heap.top()); // O(1)
+        max_heap.pop(); // O(log n)
+        k--;
+    }
+    // Total for while loop : O(k log n)
+    // Total overall :  O(n + k logn )
+    return top_k;
 
-    return {};
 }
+
+
 
 // ============================================================
 // Part E: Flag suspicious IPs
