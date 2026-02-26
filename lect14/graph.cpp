@@ -15,7 +15,27 @@ class Graph{
             // add the edge (source, dest)
             adjList[source].insert(dest);
             // Done! If this was a undirected graph, you may have wanted to have a second line
-            // adjList[dest].insert(source);
+            adjList[dest].insert(source);
+        }
+        void exploreBFS(int source){
+            vector<bool> visited(adjList.size(), false);
+            queue<int> q;
+            visited[source] = true;
+            cout << source << " ";
+            q.push(source);
+            while(!q.empty()){
+                int u = q.front();
+                q.pop();
+                for(auto v : adjList[u]){
+                    if(!visited[v]){
+                        visited[v] = true;
+                        cout << v << " ";
+                        q.push(v);
+                    }
+                }
+            }
+
+
         }
 
         void display(){
@@ -77,5 +97,9 @@ int main(int argc, char const *argv[])
     g.addEdge(4, 5);
 
     g.display();
+
+    cout << "Breadth First Traversal: ";
+    g.exploreBFS(0);
+    cout << endl;
     return 0;
 }
