@@ -3,10 +3,44 @@
 #include <assert.h>
 
 using namespace std;
-
+void merge(vector<int>& result, vector<int>& left, vector<int>& right){
+    int i = 0; // index of smallest element in left half 
+    int j = 0; // index of smallest element in right half 
+    int k = 0; // for the result vector
+    while(i < left.size() && j < right.size()){
+        if(left[i] < right[j]){
+            result[k] = left[i]; // winner of contest!
+            i++;
+            k++;
+        }else{
+            result[k] = right[j]; // winner of contest!
+            j++;
+            k++;
+        }
+    }
+    while(i < left.size()){
+        result[k] = left[i]; // winner of contest!
+        i++;
+        k++;      
+    }
+    while(j < right.size()){
+        result[k] = right[j]; // winner of contest!
+        j++;
+        k++;      
+    }
+}
 
 void mergeSort(vector<int>& v){
-   
+    if(v.size() <= 1) return;
+    int mid = v.size() / 2;
+    vector<int> left(v.begin(), v.begin() + mid);
+    vector<int> right(v.begin() + mid, v.end());
+    // How many times to we have to copy elements to split the input vector into left and right halves for input vector of size n?
+    // Total n elements are copied --> O(n) 
+    mergeSort(left);
+    mergeSort(right);
+    merge(v, left, right);
+    //O(n) --> every element is merged exactly once into the result vector.
 }
 
 
